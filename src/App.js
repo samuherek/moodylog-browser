@@ -1,21 +1,42 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { connect } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
+import globals from './styles/global';
+
+// const { ipcRenderer } = window.require('electron');
+
+// const { app } = window.require('electron').remote;
+// COMPONENTS
+import Auth from './scenes/Auth';
+import Logger from './scenes/Logger';
+
+// ACTIONS/CONFIG
 
 class App extends Component {
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+    const { isAuthenticated, loading } = this.props;
+
+    if (loading) {
+      return <div>Loading</div>;
+    }
+
+    if (isAuthenticated) {
+      return (
+        <Switch>
+          <Route path="/" component={Logger} />
+        </Switch>
+      );
+    }
+
+    return <Auth />;
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: !!state.auth.uid,
+    loading: state.auth.loading
+  };
+};
+
+export default connect(mapStateToProps)(App);

@@ -4,6 +4,9 @@
   "version": "0.1.0",
   "author": "Sam Uherek",
   "private": true,
+  "devDependencies": {
+    "@babel/runtime": "<=7.0.0-beta.55"
+  },
   "dependencies": {
     "dotenv": "^6.0.0",
     "email-validator": "^2.0.4",
