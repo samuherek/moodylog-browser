@@ -1,15 +1,29 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "MoodyLog",
+  "name": "Moody Log Your Life",
   "icons": [
     {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
+    },
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
     }
   ],
   "start_url": "./index.html",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#fbfbfb",
+  "background_color": "#fbfbfb",
+  "scope": ".",
+  "orientation": "portrait-primary",
+  "description": "Moody log your life with only the entries you care about.",
+  "lang": "en-US"
 }

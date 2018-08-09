@@ -1,10 +1,10 @@
 const theme = {
   colors: {
-    base: '#232323', // Black
+    base: '#FBFBFB', // Light gray
     secondary: '#e9e9e9', // Medium Gray
     tertiary: '#f3f3f3', // Light Gray
     highlight: '#5b8bf7', // Light Blue
-    readingText: '#3a3a3a' // Lighter black
+    readingText: '#151515' // Lighter black
   },
   fonts: {
     strong:
