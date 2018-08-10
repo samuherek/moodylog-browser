@@ -2,29 +2,32 @@ import styled from 'styled-components';
 
 const FormStyles = styled.div`
   input {
-    font-size: 14px;
-    line-height: 20px;
-    height: 32px;
-    padding: 4px 5px;
+    font-size: inherit;
+    padding: 10px 8px;
     font-family: inherit;
     width: 100%;
-    max-width: 250px;
-    background: #fafbfc;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+    // background: ${props => props.theme.colors.fieldBg};
+    background: transparent;
+    border: 1px solid transparent;
+    border-bottom: 1px dashed ${props => props.theme.colors.primary};
+    border-radius: 2px;
     outline: 0;
     display: inline-block;
 
     &:focus {
-      background: #fff;
-      border: 1px solid #4c9aff;
+      background: ${props => props.theme.colors.base};
+      border: 1px solid ${props => props.theme.colors.primary};
     }
   }
 
+  button {
+    margin: 0 auto;
+    width: 100%;
+    margin-top: 20px;
+    max-width: 180px;
+  }
+
   label {
-    // text-align: right;
-    // width: 100px;
-    // margin-right: 15px;
     word-wrap: break-word;
     color: #707070;
   }

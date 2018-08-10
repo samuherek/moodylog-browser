@@ -18,8 +18,11 @@ const Wrap = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100%;
-  color: white;
-  background: #1d509b;
+
+  ${FormStyles} {
+    width: 100%;
+    max-width: 270px;
+  }
 
   form {
     display: flex;
@@ -33,6 +36,8 @@ const Wrap = styled.div`
 
 const Title = styled.h1`
   margin-bottom: 25px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
 `;
 
 const ErrorWrap = styled.div`

@@ -1,23 +1,26 @@
 import styled from 'styled-components';
+import { lighten } from 'polished';
 
 const Button = styled.button`
   font-family: inherit;
-  color: #fff;
-  background: #0052cc;
+  color: ${props => props.theme.colors.readingText};
+  background: ${props => props.theme.colors.secondary};
   outline: 0;
   border: none;
-  font-size: 14px;
-  padding: 4px 10px;
+  font-size: 12px;
+  padding: 14px 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   text-decoration: none;
   white-space: nowrap;
-  border-radius: 3px;
+  border-radius: 2px;
   display: inline-block;
   cursor: pointer;
-  line-height: 22px;
   transition: background 0.1s ease-out;
+  max-width: 200px;
 
   &:hover {
-    background-color: #0065ff;
+    background-color: ${props => lighten(0.05, props.theme.colors.primary)};
   }
 `;
 

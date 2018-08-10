@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 // COMPONENTS
+import { ProfileIcon } from '../icons';
 
 // ACTIONS/CONFIG
 import { signOutUser } from '../../actions/authActions';
@@ -14,7 +15,6 @@ const Wrap = styled.header`
   width: 100%;
   height: 40px;
   display: flex;
-  border-bottom: 1px solid #ccc;
 `;
 
 const Action = styled.div`
@@ -31,22 +31,20 @@ const AButton = styled.button`
   cursor: pointer;
   display: inline-block;
   padding: 10px;
+
+  svg {
+    font-size: 24px;
+    color: ${props => props.theme.colors.muted}
+  }
 `;
 
 // MODULE
-const TopBar = ({ signOutUser }) => {
+const TopBar = ({ }) => {
   return (
     <Wrap>
       <Action>
-        <AButton onClick={() => {}}>Resize</AButton>
-      </Action>
-      <Action>
-        <AButton
-          onClick={() => {
-            signOutUser();
-          }}
-        >
-          Sign out
+        <AButton>
+          <ProfileIcon />
         </AButton>
       </Action>
     </Wrap>
@@ -57,6 +55,5 @@ const TopBar = ({ signOutUser }) => {
 TopBar.propTypes = {};
 
 export default connect(
-  undefined,
-  { signOutUser }
+  undefined
 )(TopBar);

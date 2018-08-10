@@ -19,6 +19,11 @@ export default class LogIn extends Component {
     super();
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleFormErrors = this.handleFormErrors.bind(this);
+    this.setFormApi = this.setFormApi.bind(this);
+  }
+
+  setFormApi(formApi) {
+    this.formApi = formApi;
   }
 
   handleFormSubmit(form) {

@@ -6,5 +6,8 @@ export default {
     token: '',
     verified: false,
     loading: true
+  },
+  ui: {
+    moodTimeout: false
   }
 };

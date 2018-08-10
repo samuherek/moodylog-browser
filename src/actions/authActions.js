@@ -51,17 +51,26 @@ export function startListeningToAuthChanges() {
 }
 
 export function signOutUser() {
+  console.log('before');
   return function signOutUserThunk(dispatch) {
+    console.log('inside');
     authUserSignOut(dispatch);
   };
 }
 
 export function createNewUser(email, password) {
+  console.log('before thunk', email, password);
   return function createNewUserThunk(dispatch) {
-    return auth.createUserWithEmailAndPassword(email, password).then(() => {
-      auth.currentUser.sendEmailVerification().catch(function(error) {
-        console.log('error sending', error);
+    console.log('signing up');
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        auth.currentUser.sendEmailVerification().catch(function(error) {
+          console.log('error sending email', error);
+        });
+      })
+      .catch(error => {
+        console.log('error signning up:', error);
       });
-    });
   };
 }

@@ -8,7 +8,8 @@ import globals from './styles/global';
 // const { app } = window.require('electron').remote;
 // COMPONENTS
 import Auth from './scenes/Auth';
-import Logger from './scenes/Logger';
+import Dashboard from './scenes/Dashboard';
+import Mood from './scenes/Mood';
 
 // ACTIONS/CONFIG
 
@@ -23,7 +24,8 @@ class App extends Component {
     if (isAuthenticated) {
       return (
         <Switch>
-          <Route path="/" component={Logger} />
+          <Route exact path="/" component={Dashboard} />
+          <Route exact path="/mood" component={Mood} />
         </Switch>
       );
     }

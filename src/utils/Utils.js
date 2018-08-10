@@ -10,7 +10,6 @@ class Utils {
   }
 
   static validateEmail(email) {
-    console.log(email);
     if (email) {
       return validator.validate(email) ? null : 'Email not in correct format';
     }

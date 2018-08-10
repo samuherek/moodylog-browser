@@ -8,8 +8,9 @@ import { Form, Text } from 'informed';
 import Button from '../../components/Button';
 
 // ACTIONS/CONFIG
-import { createNewUser } from '../../actions/authActions';
+// import { createNewUser } from '../../actions/authActions';
 import Utils from '../../utils/Utils';
+import { auth } from '../../firebase';
 
 // STYLES
 
@@ -19,16 +20,27 @@ class SignUp extends Component {
     super();
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleFormErrors = this.handleFormErrors.bind(this);
+    this.setFormApi = this.setFormApi.bind(this);
+  }
+
+  setFormApi(formApi) {
+    this.formApi = formApi;
   }
 
   handleFormSubmit(form) {
     const { onError } = this.props;
     const { email, password } = form;
 
-    createNewUser(email, password).catch(error => {
-      onError({ signUp: `${error.code} ${error.message}` });
-      console.log(error.code, error.message);
-    });
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        auth.currentUser.sendEmailVerification().catch(function(error) {
+          console.log('error sending email', error);
+        });
+      })
+      .catch(error => {
+        console.log('error signning up:', error);
+      });
   }
 
   handleFormErrors(errors) {
@@ -62,6 +74,6 @@ class SignUp extends Component {
 SignUp.propTypes = {};
 
 export default connect(
-  undefined,
-  { createNewUser }
+  undefined
+  // { createNewUser }
 )(SignUp);
