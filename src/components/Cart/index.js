@@ -13,6 +13,7 @@ const Wrap = styled.div`
   overflow: hidden;
   background: white;
   box-shadow: 0px 6px 25px -5px rgba(100, 100, 100, 0.1);
+  position: relative;
 `;
 
 // MODULE

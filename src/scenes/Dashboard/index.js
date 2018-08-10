@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 // COMPONENTS
 import BaseHeader from '../../components/Page/BaseHeader';
 import Cart from '../../components/Cart';
+import { MoodIcon } from '../../components/icons';
 
 // ACTIONS/CONFIG
 
@@ -39,7 +40,7 @@ const Tag = styled(Link)`
   width: 100%;
   font-size: 24px;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.75px;
   display: flex;
   width: 100%;
   align-items: center;
@@ -47,6 +48,21 @@ const Tag = styled(Link)`
   min-height: 125px;
   text-decoration: none;
   padding: 15px;
+  font-weight: 900;
+  color: #8683f9;
+  z-index: 2;
+  position: relative;
+`;
+
+const BG = styled.div`
+  position: absolute;
+  left: -90px;
+  font-size: 200px;
+  opacity: 0.15;
+  top: -75px;
+  transform: rotate(25deg);
+  color: #8683f9;
+  z-index: 0;
 `;
 
 // MODULE
@@ -59,9 +75,12 @@ class DashboardScene extends Component {
 
     return (
       <Wrap>
-        <BaseHeader />
+        <BaseHeader title="anything to log?" />
         <Grid>
           <Cart>
+            <BG>
+              <MoodIcon />
+            </BG>
             {moodTimeout ? <TagDisabled>Timeout</TagDisabled> : <Tag to="/mood">Mood</Tag>}
           </Cart>
           <Cart>

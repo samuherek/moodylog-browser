@@ -13,7 +13,7 @@ import { ProfileIcon } from '../../icons';
 import { Header, HeaderTitle, Thumb, Nav } from '../styles';
 
 // MODULE
-const BaseHeader = ({ user }) => {
+const BaseHeader = ({ user, title }) => {
   return [
     <Header key="header">
       <HeaderTitle>
@@ -24,7 +24,7 @@ const BaseHeader = ({ user }) => {
           user.displayName
         )}
         ,<br />
-        anything you want to log?
+        {title}
       </HeaderTitle>
       <Thumb to="/account">
         <ProfileIcon />

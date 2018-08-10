@@ -13,7 +13,7 @@ import BaseHeader from '../../components/Page/BaseHeader';
 export default function AnalyticsScene({}) {
   return (
     <div>
-      <BaseHeader />
+      <BaseHeader title="what to check?" />
       <div style={{ padding: '25px', opacity: '0.5' }}>
         <p>
           This feature is still just coming. Keep using the app, let me know about it and it will be
