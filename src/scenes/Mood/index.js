@@ -5,19 +5,15 @@ import styled, { css } from 'styled-components';
 import { connect } from 'react-redux';
 
 // COMPONENTS
+import { BackIcon } from '../../components/icons';
 
 // ACTIONS/CONFIG
 import { logMoodToDB } from '../../actions/logActions';
 
 // STYLES
-const Wrap = styled.div`
-  padding: 25px;
-  max-width: 600px;
+import { Header, HeaderTitle, BackBtn } from '../../components/Page/styles';
 
-  h2 {
-    margin-bottom: 25px;
-  }
-`;
+const Wrap = styled.div``;
 
 const Mood = styled.button`
   font-size: inherit;
@@ -27,9 +23,9 @@ const Mood = styled.button`
   border: none;
   cursor: pointer;
   display: flex;
-  width: 100%;
+  width: calc(100% - 50px);
   padding: 25px;
-  margin-bottom: 25px;
+  margin: 0 25px 25px;
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
@@ -84,7 +80,12 @@ class MoodScene extends Component {
 
     return (
       <Wrap>
-        <h2>How do you feel at the moment?</h2>
+        <Header>
+          <BackBtn to="/">
+            <BackIcon />
+          </BackBtn>
+          <HeaderTitle>How do you feel?</HeaderTitle>
+        </Header>
         {moods.map(mood => (
           <Mood
             submitting={submitting}

@@ -67,3 +67,21 @@ export const Nav = styled.div`
     }
   }
 `;
+
+export const BackBtn = styled(Link)`
+  font-family: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  opacity: 0.25;
+  align-items: center;
+  font-size: 25px;
+  margin-right: 15px;
+
+  &:hover {
+    opacity: 1;
+  }
+`;
