@@ -9,7 +9,6 @@ import styled from 'styled-components';
 
 // STYLES
 const Wrap = styled.div`
-  display: inline-block;
   border-radius: 6px;
   overflow: hidden;
   background: white;

@@ -61,12 +61,8 @@ const Item = styled.span`
 `;
 
 const Grid = styled.div`
-  & > * {
-    width: 48%;
-
-    &:nth-child(odd) {
-      margin-right: 4%;
-    }
+  & > div {
+    margin-bottom: 25px;
   }
 `;
 
@@ -84,6 +80,7 @@ const TagDisabled = styled.span`
 `;
 
 const Tag = styled(Link)`
+  width: 100%;
   font-size: 24px;
   text-transform: uppercase;
   letter-spacing: 1px;
