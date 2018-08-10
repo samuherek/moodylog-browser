@@ -8,6 +8,7 @@ import Auth from './scenes/Auth';
 import Dashboard from './scenes/Dashboard';
 import Mood from './scenes/Mood';
 import Analtyics from './scenes/Analytics';
+import Account from './scenes/Account';
 import Spinner from './components/Spinner';
 
 // ACTIONS/CONFIG
@@ -18,7 +19,7 @@ class App extends Component {
     const { loading } = this.props;
     const authenticated = isAuthenticated();
 
-    if (loading && !authenticated) {
+    if (loading && authenticated) {
       return (
         <div
           style={{
@@ -39,6 +40,7 @@ class App extends Component {
           <Route exact path="/" component={Dashboard} />
           <Route exact path="/mood" component={Mood} />
           <Route exact path="/analytics" component={Analtyics} />
+          <Route exact path="/account" component={Account} />
         </Switch>
       );
     }
