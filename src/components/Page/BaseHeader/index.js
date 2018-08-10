@@ -5,12 +5,12 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 // COMPONENTS
-import { ProfileIcon } from '../../icons';
+import Avatar from '../../Avatar';
 
 // ACTIONS/CONFIG
 
 // STYLES
-import { Header, HeaderTitle, Thumb, Nav } from '../styles';
+import { Header, HeaderTitle, Nav } from '../styles';
 
 // MODULE
 const BaseHeader = ({ user, title }) => {
@@ -26,9 +26,7 @@ const BaseHeader = ({ user, title }) => {
         ,<br />
         {title}
       </HeaderTitle>
-      <Thumb to="/account">
-        <ProfileIcon />
-      </Thumb>
+      <Avatar to="/account" pushRight />
     </Header>,
     <Nav key="nav">
       <NavLink exact to="/">
@@ -44,7 +42,7 @@ BaseHeader.propTypes = {};
 
 const mapStateToProps = state => {
   return {
-    user: state.user || state.auth
+    user: state.profile
   };
 };
 

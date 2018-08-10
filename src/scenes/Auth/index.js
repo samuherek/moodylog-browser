@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Route } from 'react-router-dom';
 
 // COMPONENTS
 import SignUp from './SignUp';
@@ -111,7 +112,15 @@ export default class AuthScene extends Component {
       <Wrap>
         <Title>{login ? 'Already a user' : 'First Sign Up'}</Title>
         <FormStyles>
-          {login ? <LogIn onError={this.handleErrors} /> : <SignUp onError={this.handleErrors} />}
+          <Route
+            render={props => {
+              return login ? (
+                <LogIn history={props.history} onError={this.handleErrors} />
+              ) : (
+                <SignUp onError={this.handleErrors} history={props.history} />
+              );
+            }}
+          />
         </FormStyles>
         {/* <ErrorWrap>
           {emailError && <Error>EMAIL: {emailError}</Error>}

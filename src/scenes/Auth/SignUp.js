@@ -28,7 +28,7 @@ class SignUp extends Component {
   }
 
   handleFormSubmit(form) {
-    const { onError } = this.props;
+    const { onError, history } = this.props;
     const { email, password } = form;
 
     auth
@@ -41,6 +41,7 @@ class SignUp extends Component {
       .catch(error => {
         console.log('error signning up:', error);
       });
+    history.push('/');
   }
 
   handleFormErrors(errors) {

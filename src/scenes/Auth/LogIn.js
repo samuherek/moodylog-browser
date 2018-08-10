@@ -27,11 +27,12 @@ export default class LogIn extends Component {
   }
 
   handleFormSubmit(form) {
-    const { onError } = this.props;
+    const { onError, history } = this.props;
     auth.signInWithEmailAndPassword(form.email, form.password).catch(error => {
       onError(error);
       this.formApi.reset();
     });
+    // history.push('/');
   }
 
   handleFormErrors(errors) {

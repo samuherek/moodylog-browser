@@ -79,7 +79,7 @@ export const BackBtn = styled(Link)`
   opacity: 0.25;
   align-items: center;
   font-size: 25px;
-  margin-right: 15px;
+  margin-left: auto;
 
   &:hover {
     opacity: 1;

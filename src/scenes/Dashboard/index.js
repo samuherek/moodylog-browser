@@ -84,7 +84,7 @@ class DashboardScene extends Component {
             {moodTimeout ? <TagDisabled>Timeout</TagDisabled> : <Tag to="/mood">Mood</Tag>}
           </Cart>
           <Cart>
-            <Tag to="/mood">pH</Tag>
+            <Tag to="/ph">pH</Tag>
           </Cart>
         </Grid>
       </Wrap>

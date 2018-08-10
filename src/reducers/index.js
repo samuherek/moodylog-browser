@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 
 // Reducers
-import authReducer from './authReducer';
+import profileReducer from './profileReducer';
 import uiReducer from './uiReducer';
 
 // Combine Reducers
 const reducers = combineReducers({
-  auth: authReducer,
+  profile: profileReducer,
   ui: uiReducer
 });
 

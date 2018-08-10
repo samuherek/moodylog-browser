@@ -9,6 +9,7 @@ import Dashboard from './scenes/Dashboard';
 import Mood from './scenes/Mood';
 import Analtyics from './scenes/Analytics';
 import Account from './scenes/Account';
+import Ph from './scenes/Ph';
 import Spinner from './components/Spinner';
 
 // ACTIONS/CONFIG
@@ -41,6 +42,7 @@ class App extends Component {
           <Route exact path="/mood" component={Mood} />
           <Route exact path="/analytics" component={Analtyics} />
           <Route exact path="/account" component={Account} />
+          <Route exact path="/ph" component={Ph} />
         </Switch>
       );
     }
@@ -51,8 +53,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: !!state.auth.uid,
-    loading: state.auth.loading
+    isAuthenticated: !!state.profile.uid,
+    loading: state.profile.loading
   };
 };
 

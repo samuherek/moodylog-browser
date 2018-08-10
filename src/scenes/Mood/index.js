@@ -81,10 +81,10 @@ class MoodScene extends Component {
     return (
       <Wrap>
         <Header>
+          <HeaderTitle>How do you feel?</HeaderTitle>
           <BackBtn to="/">
             <BackIcon />
           </BackBtn>
-          <HeaderTitle>How do you feel?</HeaderTitle>
         </Header>
         {moods.map(mood => (
           <Mood
