@@ -15,7 +15,7 @@ export default function appReducer(state = initialState.auth, action) {
       return {
         ...state,
         email: user.email,
-        displayName: user.displayName,
+        displayName: user.displayName ? user.displayName : 'Anonymous',
         uid: user.uid,
         verified: user.emailVerified
       };

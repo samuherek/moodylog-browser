@@ -7,6 +7,7 @@ import globals from './styles/global';
 import Auth from './scenes/Auth';
 import Dashboard from './scenes/Dashboard';
 import Mood from './scenes/Mood';
+import Analtyics from './scenes/Analytics';
 import Spinner from './components/Spinner';
 
 // ACTIONS/CONFIG
@@ -37,6 +38,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Dashboard} />
           <Route exact path="/mood" component={Mood} />
+          <Route exact path="/analytics" component={Analtyics} />
         </Switch>
       );
     }

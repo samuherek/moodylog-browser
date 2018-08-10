@@ -20,7 +20,7 @@ body {
   font-style: normal;
   font-weight: 400;
   line-height: 1.42857142857143;
-  background: #FBFBFB;
+  background: #F6F6F8;
 }
 
 h1,
