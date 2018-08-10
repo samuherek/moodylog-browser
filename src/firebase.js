@@ -26,8 +26,12 @@ export const timestampKey = 'KEY_FOR_LOCAL_STORAGE_TIMESTAMP';
 
 export const isAuthenticated = () => {
   // console.log(auth.currentUser, !!auth.currentUser);
-  return !!auth.currentUser;
+  return !!auth.currentUser || !!localStorage.getItem(uidKey);
 };
+export const getCurrentUser = () => {
+  return auth.currentUser;
+};
+
 export const getToken = () => {
   return auth.currentUser.getIdToken();
 };

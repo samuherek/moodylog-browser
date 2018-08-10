@@ -3,6 +3,7 @@ export default {
   auth: {
     email: '',
     uid: '',
+    displayName: 'Anonymous',
     token: '',
     verified: false,
     loading: true

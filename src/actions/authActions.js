@@ -41,9 +41,9 @@ export function startListeningToAuthChanges() {
         }
         dispatch(signIn(user));
       } else {
-        if (auth.currentUser) {
-          authUserSignOut(dispatch);
-        }
+        // if (!auth.currentUser) {
+        authUserSignOut(dispatch);
+        // }
       }
       dispatch(authDone());
     });
