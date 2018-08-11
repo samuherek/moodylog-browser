@@ -1,7 +1,7 @@
 import * as types from '../actions/actionTypes';
 import initialState from '../store/initialState';
 
-export default function appReducer(state = initialState.auth, action) {
+export default function profileReducer(state = initialState.profile, action) {
   switch (action.type) {
     case types.AUTH_DONE: {
       return {

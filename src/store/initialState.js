@@ -1,9 +1,11 @@
 // Exporting the defualt initial state
 export default {
-  auth: {
+  profile: {
     email: '',
     uid: '',
     displayName: 'Anonymous',
+    firstName: '',
+    lastName: '',
     token: '',
     verified: false,
     loading: true
