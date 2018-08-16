@@ -1,5 +1,5 @@
 import React, { PureComponent, createContext, type Node } from 'react';
-import { firestore, fireAuth } from '../firebase';
+import { firestore, fireAuth } from '../../firebase';
 
 export const ProfileContext = createContext({
   email: '',
@@ -9,7 +9,8 @@ export const ProfileContext = createContext({
   loaded: false,
   getProfileFromDb: (): void => {},
   setProfileKeyChange: (): void => {},
-  updateProfileToDb: (): void => {}
+  updateProfileToDb: (): void => {},
+  resetToDefaultProfile: (): void => {}
 });
 
 type Props = {
@@ -24,7 +25,8 @@ type State = {
   loaded: Boolean,
   getProfileFromDb: () => void,
   setProfileKeyChange: () => void,
-  updateProfileToDb: () => void
+  updateProfileToDb: () => void,
+  resetToDefaultProfile: () => void
 };
 
 class ProfileProvider extends PureComponent<Props, State> {
@@ -35,7 +37,8 @@ class ProfileProvider extends PureComponent<Props, State> {
     verified: false,
     loaded: false,
     getProfileFromDb: async (): void => {
-      if (this.state.uid) return;
+      console.log('inside provider', this.state);
+      if (this.state.uid !== '') return;
 
       const { uid } = fireAuth.getCurrentUser();
       const doc = await firestore
@@ -44,13 +47,25 @@ class ProfileProvider extends PureComponent<Props, State> {
         .get();
       if (doc.exists) {
         const data = doc.data();
-        this.setState({ email: data.email, displayName: data.displayName, uid, loaded: true });
+        this.setState({
+          email: data.email,
+          displayName: data.displayName || 'Anonymous',
+          uid,
+          loaded: true
+        });
       } else {
         console.log('no such user');
       }
     },
-    setProfileKeyChange: (): void => {},
-    updateProfileToDb: (): void => {}
+    setProfileKeyChange: (): void => {
+      console.log('changing profile context');
+    },
+    updateProfileToDb: (): void => {
+      console.log('updating profile');
+    },
+    resetToDefaultProfile: (): void => {
+      console.log('setting default profile');
+    }
   };
 
   render() {

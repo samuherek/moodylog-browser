@@ -1,13 +1,11 @@
 // NPM
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Form, Text } from 'informed';
 
 // COMPONENTS
 import Button from '../../components/Button';
 
 // ACTIONS/CONFIG
-// import { createNewUser } from '../../actions/authActions';
 import Utils from '../../utils/Utils';
 import { auth } from '../../firebase';
 
@@ -70,7 +68,4 @@ class SignUp extends Component {
   }
 }
 
-export default connect(
-  undefined
-  // { createNewUser }
-)(SignUp);
+export default SignUp;

@@ -7,11 +7,7 @@ import { BackIcon } from '../../components/icons';
 import Edit from './components/Edit';
 import Static from './components/Static';
 import Spinner from '../../components/Spinner';
-import withProfile from './withProfile';
-
-// ACTIONS/CONFIG
-import { signOutUser } from '../../actions/authActions';
-import { updateProfileInDb } from '../../actions/userActions';
+import { ProfileContext } from '../../context/profile/ProfileProvider';
 
 // STYLES
 import { Header, HeaderTitle, BackBtn } from '../../components/Page/styles';
@@ -41,17 +37,9 @@ class AccountScene extends Component<State, Props> {
     this.setState({ editting: !this.state.editting });
   }
 
-  componentDidMount() {
-    const { loaded, getProfileFromDb } = this.props.context;
-    if (!loaded) {
-      getProfileFromDb();
-    }
-  }
-
   render() {
     const { user, signOutUser, updateProfileInDb } = this.props;
     const { editting } = this.state;
-    const { loaded, email, displayName, verified } = this.props.context;
 
     return (
       <Fragment>
@@ -61,41 +49,38 @@ class AccountScene extends Component<State, Props> {
             <BackIcon />
           </BackBtn>
         </Header>
-        {!loaded ? (
-          <Spinner />
-        ) : (
-          <Fragment>
-            {editting ? (
-              <Edit
-                user={{
-                  email,
-                  displayName,
-                  verified
-                }}
-                onEditToggle={this.toggleEditting}
-                onUpdateUser={updateProfileInDb}
-              />
-            ) : (
-              <Static
-                user={{
-                  email,
-                  displayName,
-                  verified
-                }}
-                onSignOut={signOutUser}
-                onEditToggle={this.toggleEditting}
-              />
-            )}
-          </Fragment>
-        )}
+        <ProfileContext.Consumer>
+          {({ email, displayName, verified }) => {
+            if (editting) {
+              return (
+                <Edit
+                  user={{
+                    email,
+                    displayName,
+                    verified
+                  }}
+                  onEditToggle={this.toggleEditting}
+                  onUpdateUser={() => {}}
+                />
+              );
+            } else {
+              return (
+                <Static
+                  user={{
+                    email,
+                    displayName,
+                    verified
+                  }}
+                  onSignOut={() => {}}
+                  onEditToggle={this.toggleEditting}
+                />
+              );
+            }
+          }}
+        </ProfileContext.Consumer>
       </Fragment>
     );
   }
 }
 
-export default withProfile(AccountScene);
-
-// (
-//   mapStateToProps,
-//   { signOutUser, updateProfileInDb }
-// );
+export default AccountScene;

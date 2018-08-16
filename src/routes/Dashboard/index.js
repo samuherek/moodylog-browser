@@ -2,7 +2,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import styled from 'styled-components';
 import { Link, NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 // COMPONENTS
 import BaseHeader from '../../components/Page/BaseHeader';
@@ -89,11 +88,4 @@ class DashboardScene extends PureComponent<Props> {
   }
 }
 
-// Props Validation
-const mapStateToProps = state => {
-  return {
-    moodTimeout: state.ui.moodTimeout
-  };
-};
-
-export default connect(mapStateToProps)(DashboardScene);
+export default DashboardScene;

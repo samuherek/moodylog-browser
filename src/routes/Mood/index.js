@@ -8,7 +8,6 @@ import { type History } from 'react-router-dom';
 import { BackIcon } from '../../components/icons';
 
 // ACTIONS/CONFIG
-import { logMoodToDB } from '../../actions/logActions';
 
 // STYLES
 import { Header, HeaderTitle, BackBtn } from '../../components/Page/styles';
@@ -54,7 +53,6 @@ type State = {
 };
 
 type Props = {
-  logMoodToDB: () => void,
   history: Histroy
 };
 
@@ -75,14 +73,14 @@ class MoodScene extends Component<State, Props> {
   }
 
   handleValueSubmit(value) {
-    const { history, logMoodToDB, submitting } = this.props;
+    const { history, submitting } = this.props;
     if (submitting) return;
 
     this.setState({ submitting: true });
 
-    logMoodToDB(value).then(() => {
-      history.push('/');
-    });
+    // logMoodToDB(value).then(() => {
+    //   history.push('/');
+    // });
   }
 
   render() {
@@ -113,7 +111,4 @@ class MoodScene extends Component<State, Props> {
   }
 }
 
-export default connect(
-  undefined,
-  { logMoodToDB }
-)(MoodScene);
+export default MoodScene;

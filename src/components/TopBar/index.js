@@ -1,13 +1,11 @@
 // NPM
 import React from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
 
 // COMPONENTS
 import { ProfileIcon } from '../icons';
 
 // ACTIONS/CONFIG
-import { signOutUser } from '../../actions/authActions';
 
 // STYLES
 const Wrap = styled.header`
@@ -50,6 +48,4 @@ const TopBar = ({}): ReactElement => {
   );
 };
 
-// Props Validation
-
-export default connect(undefined)(TopBar);
+export default TopBar;

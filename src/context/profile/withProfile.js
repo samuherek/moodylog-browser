@@ -1,5 +1,5 @@
 import React, { Component, type Node } from 'react';
-import { ProfileContext } from '../../context/ProfileProvider';
+import { ProfileContext } from '../../context/profile/ProfileProvider';
 
 export default function withRouter(WrappedComponent: ReactElement): ReactElement {
   return class WithRouter extends Component {

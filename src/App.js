@@ -12,16 +12,25 @@ import Analtyics from './routes/Analytics';
 import Account from './routes/Account';
 import Ph from './routes/Ph';
 import Spinner from './components/Spinner';
-import ProfileProvider from './context/ProfileProvider';
+import withProfile from './context/profile/withProfile';
 
 // ACTIONS/CONFIG
 import { fireAuth } from './firebase';
 
-class App extends Component {
-  render() {
-    const { loading } = this.props;
+type Props = {
+  context: Object
+};
 
-    if (loading && fireAuth.isAuthenticated()) {
+class App extends Component<Props> {
+  componentDidMount() {
+    const { getProfileFromDb, resetToDefaultProfile } = this.props.context;
+    fireAuth.startListeningToAuthChanges(getProfileFromDb, resetToDefaultProfile);
+  }
+
+  render() {
+    const { loaded } = this.props.context;
+
+    if (!loaded && fireAuth.isAuthenticated()) {
       return (
         <div
           style={{
@@ -37,25 +46,17 @@ class App extends Component {
     }
 
     return (
-      <ProfileProvider>
-        <Switch>
-          <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
-          <Route path="/auth" component={Auth} />
-          <PrivateRoute path="/dashboard" component={Dashboard} />
-          <PrivateRoute path="/mood" component={Mood} />
-          <PrivateRoute path="/analytics" component={Analtyics} />
-          <PrivateRoute path="/account" component={Account} />
-          <PrivateRoute path="/ph" component={Ph} />
-        </Switch>
-      </ProfileProvider>
+      <Switch>
+        <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
+        <Route path="/auth" component={Auth} />
+        <PrivateRoute path="/dashboard" component={Dashboard} />
+        <PrivateRoute path="/mood" component={Mood} />
+        <PrivateRoute path="/analytics" component={Analtyics} />
+        <PrivateRoute path="/account" component={Account} />
+        <PrivateRoute path="/ph" component={Ph} />
+      </Switch>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    loading: state.profile.loading
-  };
-};
-
-export default connect(mapStateToProps)(App);
+export default withProfile(App);

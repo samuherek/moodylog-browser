@@ -22,26 +22,51 @@ export const firestore = firebase.firestore();
 // COMMENT: firestore is changing the date storage and this removes the warning from console
 const settings = { timestampsInSnapshots: true };
 firestore.settings(settings);
+// COMMENT: enable firestore persistance
+firestore.enablePersistence().catch(function(err) {
+  if (err.code == 'failed-precondition') {
+    // Multiple tabs open, persistence can only be enabled
+    // in one tab at a a time.
+    // ...
+    console.log('Multiple tabs not working with persistance');
+  } else if (err.code == 'unimplemented') {
+    // The current browser does not support all of the
+    // features required to enable persistence
+    // ...
+    console.log("Current browser doesn't support firestore persistance");
+  }
+});
 
 export const uidKey = 'KEY_FOR_LOCAL_STORAGE_UID';
 export const dataKey = 'KEY_FOR_LOCAL_STORAGE_DATA';
 export const timestampKey = 'KEY_FOR_LOCAL_STORAGE_TIMESTAMP';
+// export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+// export const AUTH_FAILURE = 'AUTH_FAILURE';
 
 export class fireAuth {
   static isAuthenticated = (): Boolean => !!auth.currentUser || !!localStorage.getItem(uidKey);
+
   static getCurrentUser = (): Object => auth.currentUser;
+
   static getToken = (): string => auth.currentUser.getidToken();
+
   static getDisplayName = (): string => fireAuth.getCurrentUser().displayName || 'Anonymous';
+
+  static startListeningToAuthChanges = (onSignInCb: () => void, onSignOutCb: () => void) => {
+    const localUser = localStorage.getItem(uidKey);
+    return auth.onAuthStateChanged(user => {
+      if (user) {
+        if (!localUser || localUser !== user) {
+          localStorage.setItem(uidKey, user.uid);
+        }
+        onSignInCb();
+      } else {
+        onSignOutCb();
+      }
+    });
+  };
+
+  static logIn = () => {};
+
+  static logOut = () => {};
 }
-
-// export const isAuthenticated = () => {
-//   // console.log(auth.currentUser, !!auth.currentUser);
-//   return !!auth.currentUser || !!localStorage.getItem(uidKey);
-// };
-// export const getCurrentUser = () => {
-//   return auth.currentUser;
-// };
-
-// export const getToken = () => {
-//   return auth.currentUser.getIdToken();
-// };
