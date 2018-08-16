@@ -1,6 +1,5 @@
 // NPM
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import { Form, Text } from 'informed';
 import styled from 'styled-components';
 
@@ -61,6 +60,3 @@ export default class LogIn extends Component {
     );
   }
 }
-
-// Props Validation
-LogIn.propTypes = {};

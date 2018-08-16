@@ -1,8 +1,8 @@
 // NPM
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { connect } from 'react-redux';
+import { type History } from 'react-router-dom';
 
 // COMPONENTS
 import { BackIcon } from '../../components/icons';
@@ -48,7 +48,17 @@ const Mood = styled.button`
 `;
 
 // MODULE
-class MoodScene extends Component {
+type State = {
+  moods: Array<Object>,
+  submitting: Boolean | false
+};
+
+type Props = {
+  logMoodToDB: () => void,
+  history: Histroy
+};
+
+class MoodScene extends Component<State, Props> {
   state = {
     moods: [
       { label: 'Never better', color: '#709E73', value: 'excellent' },
@@ -102,9 +112,6 @@ class MoodScene extends Component {
     );
   }
 }
-
-// Props Validation
-MoodScene.propTypes = {};
 
 export default connect(
   undefined,

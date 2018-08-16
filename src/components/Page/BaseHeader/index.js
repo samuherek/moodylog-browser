@@ -1,6 +1,5 @@
 // NPM
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
@@ -13,7 +12,12 @@ import Avatar from '../../Avatar';
 import { Header, HeaderTitle, Nav } from '../styles';
 
 // MODULE
-const BaseHeader = ({ user, title }) => {
+type Props = {
+  user: Object,
+  title: string
+};
+
+const BaseHeader = ({ user, title }: Props): ReactElement => {
   return [
     <Header key="header">
       <HeaderTitle>
@@ -29,16 +33,13 @@ const BaseHeader = ({ user, title }) => {
       <Avatar to="/account" pushRight />
     </Header>,
     <Nav key="nav">
-      <NavLink exact to="/">
+      <NavLink exact to="/dashboard">
         Logging
       </NavLink>
       <NavLink to="/analytics">Analizing</NavLink>
     </Nav>
   ];
 };
-
-// Props Validation
-BaseHeader.propTypes = {};
 
 const mapStateToProps = state => {
   return {

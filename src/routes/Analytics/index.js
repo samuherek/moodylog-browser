@@ -1,6 +1,5 @@
 // NPM
 import React from 'react';
-import PropTypes from 'prop-types';
 
 // COMPONENTS
 import BaseHeader from '../../components/Page/BaseHeader';
@@ -10,7 +9,7 @@ import BaseHeader from '../../components/Page/BaseHeader';
 // STYLES
 
 // MODULE
-export default function AnalyticsScene({}) {
+export default function AnalyticsScene({}): ReactElement {
   return (
     <div>
       <BaseHeader title="what to check?" />
@@ -23,6 +22,3 @@ export default function AnalyticsScene({}) {
     </div>
   );
 }
-
-// Props Validation
-AnalyticsScene.propTypes = {};

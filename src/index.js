@@ -14,8 +14,12 @@ import theme from './styles/theme';
 import { startListeningToAuthChanges } from './actions/authActions';
 import registerServiceWorker from './registerServiceWorker';
 
-registerServiceWorker();
 store.dispatch(startListeningToAuthChanges());
+
+const root = document.getElementById('root');
+if (!root) {
+  throw new Error('no root element found');
+}
 
 ReactDOM.render(
   <HashRouter>
@@ -25,5 +29,7 @@ ReactDOM.render(
       </ThemeProvider>
     </Provider>
   </HashRouter>,
-  document.getElementById('root')
+  root
 );
+
+registerServiceWorker();

@@ -1,6 +1,5 @@
 // NPM
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 // COMPONENTS
@@ -14,7 +13,7 @@ import { Header, HeaderTitle, BackBtn } from '../../components/Page/styles';
 const Wrap = styled.div``;
 
 // MODULE
-export default function PHScene({}) {
+export default function PHScene({}): ReactElement {
   return (
     <Wrap>
       <Header>
@@ -29,6 +28,3 @@ export default function PHScene({}) {
     </Wrap>
   );
 }
-
-// Props Validation
-PHScene.propTypes = {};

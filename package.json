@@ -5,7 +5,9 @@
   "author": "Sam Uherek",
   "private": true,
   "devDependencies": {
-    "@babel/runtime": "<=7.0.0-beta.55"
+    "@babel/runtime": "<=7.0.0-beta.55",
+    "flow-bin": "^0.78.0",
+    "flow-typed": "^2.5.1"
   },
   "dependencies": {
     "dotenv": "^6.0.0",
@@ -16,15 +18,19 @@
     "polished": "^1.9.3",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "react-motion": "^0.5.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
+    "react-transition-group": "^2.4.0",
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "styled-components": "^3.4.2"
   },
   "scripts": {
+    "flow": "flow",
+    "flow-typed": "flow-typed",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

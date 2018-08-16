@@ -1,6 +1,5 @@
 // NPM
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // COMPONENTS
@@ -16,7 +15,17 @@ import { updateProfileInDb } from '../../actions/userActions';
 import { Header, HeaderTitle, BackBtn } from '../../components/Page/styles';
 
 // MODULE
-class AccountScene extends Component {
+type State = {
+  editting: Boolean | false
+};
+
+type Props = {
+  user: Object,
+  signOutUser: () => void,
+  updateProfileInDb: () => void
+};
+
+class AccountScene extends Component<State, Props> {
   constructor() {
     super();
     this.state = {
@@ -50,9 +59,6 @@ class AccountScene extends Component {
     );
   }
 }
-
-// Props Validation
-AccountScene.propTypes = {};
 
 const mapStateToProps = state => {
   return {

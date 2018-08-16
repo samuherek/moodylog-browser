@@ -1,6 +1,5 @@
 // NPM
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -53,7 +52,14 @@ const ThumbLink = styled(Link)`
 `;
 
 // MODULE
-export default function Avatar({ src, to, pushRight, size }) {
+type Props = {
+  src: string,
+  to: string,
+  pushRight?: Boolean,
+  size?: 'medium' | 'big'
+};
+
+export default function Avatar({ src, to, pushRight, size }: Props): ReactElement {
   const Inner = to ? ThumbLink : Thumb;
 
   return (
@@ -62,11 +68,3 @@ export default function Avatar({ src, to, pushRight, size }) {
     </Wrap>
   );
 }
-
-// Props Validation
-Avatar.propTypes = {
-  src: PropTypes.string,
-  to: PropTypes.string,
-  pushRight: PropTypes.bool,
-  size: PropTypes.oneOf(['medium', 'big'])
-};

@@ -1,6 +1,5 @@
 // NPM
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 // COMPONENTS
@@ -17,9 +16,10 @@ const Wrap = styled.div`
 `;
 
 // MODULE
-export default function Cart({ children }) {
+type Props = {
+  children?: React.Node
+};
+
+export default function Cart({ children }: Props): ReactElement {
   return <Wrap>{children}</Wrap>;
 }
-
-// Props Validation
-Cart.propTypes = {};

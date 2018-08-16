@@ -1,6 +1,5 @@
 // NPM
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 // COMPONENTS
@@ -22,18 +21,13 @@ const InputField = styled.input`
 `;
 
 // MODULE
-export default function Input({ value, onChange, type, placeholder }) {
+type Props = {
+  value: string,
+  onChange: (event: SyntheticInputEvent<HTMLInputElement>) => void,
+  type: string,
+  placeholder: string | ''
+};
+
+export default function Input({ value, onChange, type, placeholder }: Props): ReactElement {
   return <InputField type={type} placeholder={placeholder} value={value} onChange={onChange} />;
 }
-
-// Props Validation
-Input.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  type: PropTypes.string.isRequired,
-  placeholder: PropTypes.string
-};
-
-Input.defaultProps = {
-  placeholder: ''
-};

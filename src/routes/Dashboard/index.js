@@ -1,6 +1,5 @@
 // NPM
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { PureComponent, Fragment } from 'react';
 import styled from 'styled-components';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -13,9 +12,6 @@ import { MoodIcon } from '../../components/icons';
 // ACTIONS/CONFIG
 
 // STYLES
-
-const Wrap = styled.div``;
-
 const Grid = styled.div`
   padding: 0 25px;
   & > div {
@@ -66,15 +62,16 @@ const BG = styled.div`
 `;
 
 // MODULE
-class DashboardScene extends Component {
-  constructor() {
-    super();
-  }
+type Props = {
+  moodTimeout: Boolean
+};
+
+class DashboardScene extends PureComponent<Props> {
   render() {
     const { moodTimeout } = this.props;
 
     return (
-      <Wrap>
+      <Fragment>
         <BaseHeader title="anything to log?" />
         <Grid>
           <Cart>
@@ -87,14 +84,12 @@ class DashboardScene extends Component {
             <Tag to="/ph">pH</Tag>
           </Cart>
         </Grid>
-      </Wrap>
+      </Fragment>
     );
   }
 }
 
 // Props Validation
-DashboardScene.propTypes = {};
-
 const mapStateToProps = state => {
   return {
     moodTimeout: state.ui.moodTimeout

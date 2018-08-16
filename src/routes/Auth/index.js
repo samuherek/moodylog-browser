@@ -1,14 +1,14 @@
 // NPM
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 // COMPONENTS
 import SignUp from './SignUp';
 import LogIn from './LogIn';
 
 // ACTIONS/CONFIG
+import { fireAuth } from '../../firebase';
 
 // STYLES
 import FormStyles from '../../components/Form/styles';
@@ -72,7 +72,12 @@ const AuthToggle = styled.span`
 `;
 
 // MODULE
-export default class AuthScene extends Component {
+type State = {
+  login: Boolean,
+  errors: Error
+};
+
+export default class AuthScene extends Component<State> {
   constructor() {
     super();
     this.state = {
@@ -108,6 +113,8 @@ export default class AuthScene extends Component {
   render() {
     const { login } = this.state;
 
+    if (fireAuth.isAuthenticated()) return <Redirect to="/" />;
+
     return (
       <Wrap>
         <Title>{login ? 'Already a user' : 'First Sign Up'}</Title>
@@ -131,6 +138,3 @@ export default class AuthScene extends Component {
     );
   }
 }
-
-// Props Validation
-AuthScene.propTypes = {};

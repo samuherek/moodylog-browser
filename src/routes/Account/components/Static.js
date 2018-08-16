@@ -1,6 +1,5 @@
 // NPM
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 // COMPONENTS
@@ -54,7 +53,13 @@ const ActionBtn = styled.button`
 `;
 
 // MODULE
-export default function ProfileStatic({ user, onSignOut, onEditToggle }) {
+type Props = {
+  user: Object,
+  onSignOut: (event: SyntheticMouseEvent<HTMLButtonElement>) => void,
+  onEditToggle: (event: SyntheticMouseEvent<HTMLButtonElement>) => void
+};
+
+export default function ProfileStatic({ user, onSignOut, onEditToggle }: Props): ReactElement {
   return [
     <BlockUser key="block">
       <Avatar size="big" />
@@ -70,6 +75,3 @@ export default function ProfileStatic({ user, onSignOut, onEditToggle }) {
     </Footer>
   ];
 }
-
-// Props Validation
-ProfileStatic.propTypes = {};

@@ -1,6 +1,5 @@
 // NPM
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
 // COMPONENTS
@@ -30,9 +29,12 @@ const SpinnerIcon = styled.div`
 `;
 
 // MODULE
-export default function Spinner({ theme }) {
+type Props = {
+  theme: Object
+};
+
+export default function Spinner({ theme }: Props): ReactElement {
   return <SpinnerIcon theme={theme} />;
 }
 
 // Props Validation
-Spinner.propTypes = {};

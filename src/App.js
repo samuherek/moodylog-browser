@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import globals from './styles/global';
 
 // COMPONENTS
-import Auth from './scenes/Auth';
-import Dashboard from './scenes/Dashboard';
-import Mood from './scenes/Mood';
-import Analtyics from './scenes/Analytics';
-import Account from './scenes/Account';
-import Ph from './scenes/Ph';
+import PrivateRoute from './PrivateRoute';
+import Auth from './routes/Auth';
+import Dashboard from './routes/Dashboard';
+import Mood from './routes/Mood';
+import Analtyics from './routes/Analytics';
+import Account from './routes/Account';
+import Ph from './routes/Ph';
 import Spinner from './components/Spinner';
 
 // ACTIONS/CONFIG
-import { isAuthenticated } from './firebase';
+import { fireAuth } from './firebase';
 
 class App extends Component {
   render() {
     const { loading } = this.props;
-    const authenticated = isAuthenticated();
 
-    if (loading && authenticated) {
+    if (loading && fireAuth.isAuthenticated()) {
       return (
         <div
           style={{
@@ -35,25 +35,22 @@ class App extends Component {
       );
     }
 
-    if (authenticated) {
-      return (
-        <Switch>
-          <Route exact path="/" component={Dashboard} />
-          <Route exact path="/mood" component={Mood} />
-          <Route exact path="/analytics" component={Analtyics} />
-          <Route exact path="/account" component={Account} />
-          <Route exact path="/ph" component={Ph} />
-        </Switch>
-      );
-    }
-
-    return <Auth />;
+    return (
+      <Switch>
+        <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
+        <Route path="/auth" component={Auth} />
+        <PrivateRoute path="/dashboard" component={Dashboard} />
+        <PrivateRoute path="/mood" component={Mood} />
+        <PrivateRoute path="/analytics" component={Analtyics} />
+        <PrivateRoute path="/account" component={Account} />
+        <PrivateRoute path="/ph" component={Ph} />
+      </Switch>
+    );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: !!state.profile.uid,
     loading: state.profile.loading
   };
 };

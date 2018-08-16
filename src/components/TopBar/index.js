@@ -1,6 +1,5 @@
 // NPM
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
@@ -34,12 +33,12 @@ const AButton = styled.button`
 
   svg {
     font-size: 24px;
-    color: ${props => props.theme.colors.muted}
+    color: ${props => props.theme.colors.muted};
   }
 `;
 
 // MODULE
-const TopBar = ({ }) => {
+const TopBar = ({}): ReactElement => {
   return (
     <Wrap>
       <Action>
@@ -52,8 +51,5 @@ const TopBar = ({ }) => {
 };
 
 // Props Validation
-TopBar.propTypes = {};
 
-export default connect(
-  undefined
-)(TopBar);
+export default connect(undefined)(TopBar);
