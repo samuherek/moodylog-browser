@@ -1,11 +1,13 @@
 // NPM
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 // COMPONENTS
 import { BackIcon } from '../../components/icons';
 import Edit from './components/Edit';
 import Static from './components/Static';
+import Spinner from '../../components/Spinner';
+import withProfile from './withProfile';
 
 // ACTIONS/CONFIG
 import { signOutUser } from '../../actions/authActions';
@@ -14,13 +16,13 @@ import { updateProfileInDb } from '../../actions/userActions';
 // STYLES
 import { Header, HeaderTitle, BackBtn } from '../../components/Page/styles';
 
-// MODULE
 type State = {
   editting: Boolean | false
 };
 
 type Props = {
-  user: Object,
+  context: Object,
+  // user: Object,
   signOutUser: () => void,
   updateProfileInDb: () => void
 };
@@ -29,6 +31,7 @@ class AccountScene extends Component<State, Props> {
   constructor() {
     super();
     this.state = {
+      loading: true,
       editting: false
     };
     this.toggleEditting = this.toggleEditting.bind(this);
@@ -38,35 +41,61 @@ class AccountScene extends Component<State, Props> {
     this.setState({ editting: !this.state.editting });
   }
 
+  componentDidMount() {
+    const { loaded, getProfileFromDb } = this.props.context;
+    if (!loaded) {
+      getProfileFromDb();
+    }
+  }
+
   render() {
     const { user, signOutUser, updateProfileInDb } = this.props;
     const { editting } = this.state;
+    const { loaded, email, displayName, verified } = this.props.context;
 
     return (
-      <div>
+      <Fragment>
         <Header>
           <HeaderTitle>Account</HeaderTitle>
           <BackBtn to="/">
             <BackIcon />
           </BackBtn>
         </Header>
-        {editting ? (
-          <Edit user={user} onEditToggle={this.toggleEditting} onUpdateUser={updateProfileInDb} />
+        {!loaded ? (
+          <Spinner />
         ) : (
-          <Static user={user} onSignOut={signOutUser} onEditToggle={this.toggleEditting} />
+          <Fragment>
+            {editting ? (
+              <Edit
+                user={{
+                  email,
+                  displayName,
+                  verified
+                }}
+                onEditToggle={this.toggleEditting}
+                onUpdateUser={updateProfileInDb}
+              />
+            ) : (
+              <Static
+                user={{
+                  email,
+                  displayName,
+                  verified
+                }}
+                onSignOut={signOutUser}
+                onEditToggle={this.toggleEditting}
+              />
+            )}
+          </Fragment>
         )}
-      </div>
+      </Fragment>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.profile
-  };
-};
+export default withProfile(AccountScene);
 
-export default connect(
-  mapStateToProps,
-  { signOutUser, updateProfileInDb }
-)(AccountScene);
+// (
+//   mapStateToProps,
+//   { signOutUser, updateProfileInDb }
+// );

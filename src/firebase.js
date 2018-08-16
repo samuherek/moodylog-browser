@@ -31,6 +31,7 @@ export class fireAuth {
   static isAuthenticated = (): Boolean => !!auth.currentUser || !!localStorage.getItem(uidKey);
   static getCurrentUser = (): Object => auth.currentUser;
   static getToken = (): string => auth.currentUser.getidToken();
+  static getDisplayName = (): string => fireAuth.getCurrentUser().displayName || 'Anonymous';
 }
 
 // export const isAuthenticated = () => {
